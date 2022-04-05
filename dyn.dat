@@ -1,7 +1,7 @@
 # synchronous machine
 
 #           name bus FP   FQ   P    Q    NOM  Pnom  H   D   IBRATIO
-SYNC_MACH   G5   5   1.   1.   0.   0.   500. 460.  4.  0.  2.05
+SYNC_MACH   G   5   1.   1.   0.   0.   500. 460.  4.  0.  2.05
 #  mod_type Xl    Xd    X'd   X"d   Xq   X'q   X"q   m    n       Ra   T'do  T"do  T'qo  T"qo
     XT      0.15  2.2   0.3   0.2   2.   0.4   0.2   0.   6.0257  0.   7.00  0.05  1.5   0.05
 # EXC  model_name      G    Ta   Tb    Te   vfmin  vfmax

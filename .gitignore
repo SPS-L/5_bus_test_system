@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.toc
+*.gz
+*.out
+*.xsim
+*.trace
+.ipynb_checkpoints

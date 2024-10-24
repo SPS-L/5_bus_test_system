@@ -1,0 +1,166 @@
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{amstext,epsfig,amssymb,amsbsy,amsmath}
+\usepackage{bm}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage[latin1]{inputenc}
+\usepackage{sectsty}
+\usepackage[margin=1in,headheight=13.6pt]{geometry}
+\allsectionsfont{\sffamily}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\fancyhead[RE,RO]{}
+%\fancyhead[RE,LO]{Guides and tutorials}
+\fancyhead[LE,LO]{CUT}
+\fancyfoot[RE,RO]{Page \thepage}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\selectlanguage{english}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\newcommand{\ua}{\underline{a\!}\,}
+\usepackage{steinmetz}
+\usepackage{mdframed}
+\usepackage{pifont}
+\usepackage{float}
+\usepackage[linktoc=all]{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{rotating}
+
+\usepackage[makeroom]{cancel}
+
+
+\newenvironment{warning}
+{\par\begin{mdframed}[linewidth=2pt,linecolor=red]%
+		\begin{list}{}{\leftmargin=1cm
+				\labelwidth=\leftmargin}\item[\Large\color{red}\ding{43}]}
+		{\end{list}\end{mdframed}\par}
+	
+\newenvironment{hint}
+{\par\begin{mdframed}[linewidth=2pt,linecolor=blue]%
+		\begin{list}{}{\leftmargin=1cm
+				\labelwidth=\leftmargin}\item[\Large\color{blue}\ding{45}]}
+		{\end{list}\end{mdframed}\par}
+	
+%% Units
+\usepackage[
+per-mode=fraction,
+detect-all,
+detect-display-math = true,
+detect-inline-family = text, %% NEEDS CURRENT VERSION OF SIUNITX
+detect-inline-weight = text
+]{siunitx}
+% some specific power system units (which are not standard SI units..)
+\DeclareSIUnit\pu{pu}
+\DeclareSIUnit\voltampere{VA}
+\DeclareSIUnit\var{var}
+% define the versor notation ('1<5?'). Usage \versor[unit]{magnitude}{angle}
+\newcommand{\versor}[3][]{#2\phase{#3^\circ}\,\si{#1}}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, arrows.meta}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.mypathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{patterns}
+% DO NOT INPUT ANY CIRCUITS LIBRARIES HERE; AS THERE IS A CLASH BETWEEN
+% circuitikz and circuits
+\usetikzlibrary{circuits, circuits.ee.IEC}
+\usepackage[europeanresistors,americaninductors,smartlabels]{circuitikz}
+%\input{../circuitsPowerSystemSymbols.sty}
+% \usepackage[european]{circuitikz}
+\usepackage{pgfplots}
+% Load the library
+%\usetikzlibrary{external}
+% Enable the library !!!>>> MUST be in the preamble <<<!!!!
+%\tikzexternalize
+
+\usepackage{ifthen}
+\newboolean{student-version}  
+\newcommand{\mysolution}[1] {%
+	\ifthenelse{\boolean{student-version}}{}{%
+		\subsection*{Solution}
+		#1%
+		\newpage
+	}%
+}
+
+\newcommand{\myexercise}[2] {%
+		\subsection{#1}
+		#2%
+}
+
+\usepackage{xsim}
+\xsimsetup{
+	%  exercise/within=chapter,
+	% exercise/template=theorem ,
+	exercise/within = section ,
+	exercise/the-counter = \thesection.\arabic{exercise} ,
+	%  exercise/the-counter=\thechapter.\arabic{exercise},
+	path = {temp}
+}
+
+\DeclareExerciseProperty{exhint}
+% we'll use a description list for the hints:
+\newcommand\printexhints{%
+	\begin{description}
+		\ForEachUsedExerciseByType{%
+			\def\ExerciseType{##1}%
+			\def\ExerciseID{##2}%
+			\GetExercisePropertyT{exhint}
+			{%
+				\item[\XSIMmixedcase{\GetExerciseName}~##3]
+				####1%
+			}%
+		}%
+	\end{description}
+}
+
+\newcommand\exhint[1]{\SetExerciseProperty{exhint}{#1}}
+
+
+\DeclareExerciseProperty{exanswer}
+% we'll use a description list for the answers:
+\newcommand\printexanswers{%
+	\begin{description}
+		\ForEachUsedExerciseByType{%
+			\def\ExerciseType{##1}%
+			\def\ExerciseID{##2}%
+			\GetExercisePropertyT{exanswer}
+			{%
+				\item[\XSIMmixedcase{\GetExerciseName}~##3]
+				####1%
+			}%
+		}%
+	\end{description}
+}
+
+\newcommand\exanswer[1]{\SetExerciseProperty{exanswer}{#1}}
+
+
+\def\begs{\begin{split}}
+\def\ends{\end{split}}
+\def\begequ{\begin{equation}}
+\def\endequ{\end{equation}}
+\def\lab{\label}
+\def\begdes{\begin{description}}
+\def\enddes{\end{description}}
+\def\begenu{\begin{enumerate}}
+\def\begite{\begin{itemize}}
+\def\endite{\end{itemize}}
+\def\endenu{\end{enumerate}}
+\def\ctscale{0.7}
+\def\ctlinewidth{0.5pt}

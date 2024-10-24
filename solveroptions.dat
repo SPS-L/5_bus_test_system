@@ -13,5 +13,5 @@ $LATENCY 20. F                     ;
 $SCHEME DE                         ;
 $OMEGA_REF COI                     ;
 
-DCTL SIM_MINMAXVOLT Voltages 0.6 1.4 2 0 ;
+DCTL SIM_MINMAXVOLT Voltages 0.3 1.4 2 0 ;
 DCTL SIM_MINMAXSPEED Speeds  0.5 1.5 2 0 ;

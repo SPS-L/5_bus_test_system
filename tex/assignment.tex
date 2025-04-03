@@ -206,9 +206,9 @@ The second operating point assumes the sub-system is importing power from the gr
 To modify the disturbance and implement the different case studies listed below, the command \textit{addDisturb} is used:
 
 \begin{itemize}
-\item To increase the power setpoint of generator $G$ by $D$ pu in $T$ seconds: 
+\item To increase the power setpoint of generator $G$ by $D$ MW in $T$ seconds: 
 
-\textcode|ram.addDisturb($time, 'CHGPRM TOR G Po $D $T')|
+\textcode|ram.addDisturb($time, 'CHGPRM TOR G P0 $D MW $T')|
 
 \item To increase the voltage setpoint of generator $G$ by D pu in T seconds: 
 
@@ -230,6 +230,69 @@ To modify the disturbance and implement the different case studies listed below,
 
 \textcode|ram.addDisturb($time, 'BREAKER BRANCH XYZ 0')|
 
+\end{itemize}
+
+\noindent You need to change the variables with \$ to the values required by the case studies.
+
+\section{Syntax of observables}
+
+To view the output after the simulation:
+
+\begin{itemize}
+	\item Generator G active power: 	
+	\textcode|ext.getSync('G').P.plot()|
+	
+	\item Generator G reactive power: 	
+	\textcode|ext.getSync('G').Q.plot()|
+	
+	\item Generator G frequency (in pu): 	
+	\textcode|ext.getSync('G').S.plot()|
+	
+	\item Generator G rotor angle: 	
+	\textcode|ext.getSync('G').A.plot()|
+	
+	\item Generator G field current: 	
+	\textcode|ext.getSync('G').FC.plot()|
+		
+	\item Generator G valve opening: 	
+	\textcode|ext.getTor('G').z.plot()|
+	
+	\item Generator G mechanical power: 	
+	\textcode|ext.getTor('G').Pm.plot()|
+	
+	\item Generator G excitation control: \textcode|ext.getExc('G').dvpss.plot()|
+	
+	\item Generator G field voltage: 	
+	\textcode|ext.getExc('G').vf.plot()|
+	
+	\item Bus 3 voltage magnitude:	
+	\textcode|ext.getBus('3').mag.plot()|
+	
+	\item Bus 3 voltage magnitude:	
+	\textcode|ext.getBus('3').mag.plot()|
+	
+	\item Load Impedance\_Load active power: 	
+	\textcode|ext.getInj('Impedance_Load').P.plot()|
+	
+	\item Load Impedance\_Load reactive power: 	
+	\textcode|ext.getInj('Impedance_Load').Q.plot()|
+	
+	\item Motor Large\_Motor active power: 	
+	\textcode|ext.getInj('Large_Motor').P.plot()|
+	
+	\item Motor Large\_Motor reactive power: 	
+	\textcode|ext.getInj('Large_Motor').Qmot.plot()|
+	
+	\item Motor Large\_Motor speed: 	
+	\textcode|ext.getInj('Large_Motor').omega.plot()|
+	
+	\item Active power entering line 1-3: 	
+	\textcode|ext.getBranch('1-3').PF.plot()|
+	
+	\item Rective power entering line 1-3: 	
+	\textcode|ext.getBranch('1-3').QF.plot()|
+	
+	
 \end{itemize}
 
 \noindent You need to change the variables with \$ to the values required by the case studies.
@@ -284,7 +347,7 @@ Implement the following case study:
 \noindent Comment as far as possible the evolution of:
 \begin{enumerate}
 \item Observe the evolution of the rotor speed of the generator
-\item Observe the evolution of the PSS output (select: generator G5 - observable of excitation control - dvpss)
+\item Observe the evolution of the PSS output (select: generator G - observable of excitation control - dvpss)
 \item take the Power System Stabilizer (PSS) out of service, simulate the same disturbance and compare the evolution of the rotor speed with the previous one
 \item observe the evolution of the voltage magnitude at bus 3 and comment on the similarity
 \item what is the period of the dominant oscillation?
@@ -307,7 +370,7 @@ Implement the following case study:
 \item the terminal voltage of the generator
 \item the active and reactive powers of the generator
 \item the rotor speed of the generator
-\item the field voltage of the generator (select: generator G5 - observable of excitation control - vf)
+\item the field voltage of the generator (select: generator G - observable of excitation control - vf)
 \item the active power consumed by the impedance load at bus 2
 \item the active power consumed by one of the motors at bus 2
 \item the speed of one the motors at bus 2
@@ -325,10 +388,10 @@ Implement the following case study:
 
 \noindent Comment as far as possible the evolution of:
 \begin{enumerate}
-\item rotor speed of G5
-\item active power produced by G5
-\item control valve opening (select: generator G5 - observable of torque controller - z)
-\item turbine mechanical power (select: generator G5 - observable of torque controller - Pm ; in pu on the turbine nominal power).	
+\item rotor speed of G
+\item active power produced by G
+\item control valve opening (select: generator G - observable of torque controller - z)
+\item turbine mechanical power (select: generator G - observable of torque controller - Pm ; in pu on the turbine nominal power).	
 \item Compute the final rotor speed using a formula from primary frequency control. Comment on the accuracy and try improving it.
 \end{enumerate}
 
